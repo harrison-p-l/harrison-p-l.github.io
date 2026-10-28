@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Harrison Pielke-Lombardo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Senior backend and full-stack engineer in Denver, available for contract work: data pipelines, AWS infrastructure, zero-downtime database migrations, LLM automation, and Clojure.">
+<meta property="og:title" content="Harrison Pielke-Lombardo, contract backend engineer">
+<meta property="og:description" content="Data pipelines, AWS infrastructure, database migrations, LLM automation, and Clojure. Remote or on-site in Colorado.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2313303B'/%3E%3Ctext x='16' y='22' font-family='Arial,sans-serif' font-size='15' font-weight='700' fill='%23E9F1F2' text-anchor='middle'%3EHPL%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one narrow reading column; a two-column hero with a "spec sheet" readout of real production numbers; work entries set as a ledger. */
+:root {
+  --bg: #F2F5F5;
+  --surface: #FFFFFF;
+  --ink: #13232C;
+  --muted: #55656E;
+  --rule: #D3DCDE;
+  --accent: #0E6273;
+  --accent-ink: #FFFFFF;
+  --signal: #C77D12;
+  --font-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Public Sans", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --step--1: 0.8125rem;
+  --step-0: 1rem;
+  --step-1: 1.25rem;
+  --step-2: 1.625rem;
+  --step-3: clamp(2.25rem, 1.6rem + 3.2vw, 3.75rem);
+  --wrap: 68rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0D161B; --surface: #142128; --ink: #E4ECEE; --muted: #97A8AF;
+    --rule: #26363E; --accent: #5DBACB; --accent-ink: #0D161B; --signal: #E3A548;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0D161B; --surface: #142128; --ink: #E4ECEE; --muted: #97A8AF;
+  --rule: #26363E; --accent: #5DBACB; --accent-ink: #0D161B; --signal: #E3A548;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 40rem) { .wrap { padding-left: max(32px, env(safe-area-inset-left, 0px)); padding-right: max(32px, env(safe-area-inset-right, 0px)); } }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Top bar */
+.topbar { border-bottom: 1px solid var(--rule); }
+.topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; flex-wrap: wrap; }
+.mark { font-family: var(--font-display); font-weight: 800; font-size: 1.05rem; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+.nav { display: flex; gap: 20px; flex-wrap: wrap; }
+.nav a { color: var(--muted); text-decoration: none; font-size: 0.9375rem; }
+.nav a:hover { color: var(--ink); }
+
+/* Hero */
+.hero .wrap { display: grid; gap: 40px; padding-block: 56px 64px; }
+@media (min-width: 56rem) { .hero .wrap { grid-template-columns: 1.35fr 1fr; align-items: end; gap: 56px; padding-block: 80px 88px; } }
+.hero-copy { display: grid; gap: 22px; min-width: 0; }
+.status { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: var(--step--1); color: var(--ink); }
+.status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--signal); box-shadow: 0 0 0 4px color-mix(in srgb, var(--signal) 22%, transparent); }
+.hero h1 { font-size: var(--step-3); font-weight: 800; letter-spacing: -0.025em; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.lede { font-size: 1.125rem; color: var(--muted); max-width: 36rem; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 20px; border-radius: 6px; border: 1px solid var(--accent);
+  font: 600 0.9375rem/1 var(--font-body); text-decoration: none; cursor: pointer;
+}
+.btn-primary { background: var(--accent); color: var(--accent-ink); }
+.btn-primary:hover { filter: brightness(1.08); }
+.btn-ghost { background: transparent; color: var(--accent); }
+.btn-ghost:hover { background: color-mix(in srgb, var(--accent) 10%, transparent); }
+
+/* Spec sheet */
+.spec { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 22px 24px; min-width: 0; }
+.spec-head { display: flex; justify-content: space-between; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
+.spec dl { margin: 0; display: grid; }
+.spec dl > div { display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: baseline; padding-block: 12px; border-bottom: 1px dashed var(--rule); }
+.spec dl > div:last-child { border-bottom: 0; padding-bottom: 0; }
+.spec dt { color: var(--muted); font-size: 0.9375rem; }
+.spec dd { margin: 0; font-family: var(--font-mono); font-weight: 600; font-size: 1.0625rem; font-variant-numeric: tabular-nums; text-align: right; }
+
+/* Sections */
+section.block { border-top: 1px solid var(--rule); }
+section.block > .wrap { padding-block: 64px; display: grid; gap: 36px; }
+@media (min-width: 56rem) { section.block > .wrap { grid-template-columns: 16rem 1fr; gap: 56px; } }
+.block-head { display: grid; gap: 10px; align-content: start; }
+.block-head h2 { font-size: var(--step-2); font-weight: 700; letter-spacing: -0.015em; }
+.block-head p { color: var(--muted); font-size: 0.9375rem; }
+.block-body { min-width: 0; }
+
+/* Services */
+.services { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+.services li { display: grid; gap: 6px; padding-block: 20px; border-bottom: 1px solid var(--rule); }
+.services li:first-child { padding-top: 0; }
+.services li:last-child { border-bottom: 0; padding-bottom: 0; }
+@media (min-width: 40rem) { .services li { grid-template-columns: 15rem 1fr; gap: 24px; } }
+.services h3 { font-size: var(--step-1); font-weight: 700; }
+.services p { color: var(--muted); max-width: 38rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.tags span { font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink); background: color-mix(in srgb, var(--accent) 9%, transparent); border-radius: 4px; padding: 3px 7px; }
+
+/* Work ledger */
+.ledger { display: grid; gap: 40px; }
+.entry { display: grid; gap: 12px; }
+.entry-meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; align-items: baseline; }
+.entry h3 { font-size: var(--step-1); font-weight: 700; }
+.entry h3 a { color: inherit; text-decoration-color: var(--rule); }
+.entry h3 a:hover { text-decoration-color: var(--accent); }
+.entry .when { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); font-variant-numeric: tabular-nums; }
+.entry .role { color: var(--muted); font-size: 0.9375rem; }
+.entry ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 6px; max-width: 42rem; }
+.entry li::marker { color: var(--accent); }
+
+/* Engagements */
+.terms { display: grid; gap: 16px; }
+@media (min-width: 48rem) { .terms { grid-template-columns: repeat(3, 1fr); } }
+.term { display: grid; gap: 8px; align-content: start; padding: 20px; border: 1px solid var(--rule); border-radius: 8px; background: var(--surface); min-width: 0; }
+.term h3 { font-size: 1.125rem; font-weight: 700; }
+.term p { color: var(--muted); font-size: 0.9375rem; }
+.term .rate { font-family: var(--font-mono); font-size: 0.875rem; color: var(--ink); margin-top: 4px; }
+.note { margin-top: 20px; color: var(--muted); font-size: 0.9375rem; max-width: 42rem; }
+
+/* Background */
+.facts { display: grid; gap: 14px; margin: 0; }
+.facts > div { display: grid; gap: 2px; }
+@media (min-width: 40rem) { .facts > div { grid-template-columns: 9rem 1fr; gap: 24px; } }
+.facts dt { font-family: var(--font-mono); font-size: var(--step--1); color: var(--muted); padding-top: 3px; text-transform: uppercase; letter-spacing: 0.06em; }
+.facts dd { margin: 0; }
+
+/* Contact */
+.contact { background: var(--ink); color: var(--bg); }
+.contact .wrap { padding-block: 64px; display: grid; gap: 24px; }
+.contact h2 { font-size: var(--step-2); font-weight: 700; color: var(--bg); }
+.contact p { color: color-mix(in srgb, var(--bg) 78%, var(--ink)); max-width: 38rem; }
+.contact-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.email { font-family: var(--font-mono); font-size: 1.125rem; color: var(--bg); user-select: all; overflow-wrap: anywhere; }
+.copy { font: 600 0.875rem/1 var(--font-body); padding: 10px 14px; border-radius: 6px; border: 1px solid color-mix(in srgb, var(--bg) 40%, transparent); background: transparent; color: var(--bg); cursor: pointer; }
+.copy:hover { background: color-mix(in srgb, var(--bg) 12%, transparent); }
+.contact .links { display: flex; flex-wrap: wrap; gap: 20px; }
+.contact .links a { color: var(--bg); }
+.contact a:focus-visible, .contact button:focus-visible { outline-color: var(--bg); }
+
+footer .wrap { padding-block: 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; color: var(--muted); font-size: var(--step--1); }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="mark" href="#top">Harrison Pielke-Lombardo</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#engagements">Engagements</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <span class="status">Booking contract work · remote or Colorado</span>
+        <h1>Backend systems that keep running <em>while the business grows.</em></h1>
+        <p class="lede">I'm a senior backend and full-stack engineer in Denver. I build data pipelines, rules engines, and AWS infrastructure, migrate production databases without downtime, and put LLMs to work on document-heavy back-office tasks. I own projects end to end and work directly with you.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="mailto:pielkekid@gmail.com?subject=Project%20inquiry">Start a conversation</a>
+          <a class="btn btn-ghost" href="#work">See past work</a>
+        </div>
+      </div>
+
+      <aside class="spec" aria-label="Production track record">
+        <div class="spec-head">
+          <span class="label">Track record</span>
+          <span class="label">2016 – 2026</span>
+        </div>
+        <dl>
+          <div><dt>Documents processed per month</dt><dd>1M+</dd></div>
+          <div><dt>B2B customers supported</dt><dd>70+</dd></div>
+          <div><dt>Downtime during Datomic → Postgres move</dt><dd>0 min</dd></div>
+          <div><dt>Pull requests merged on Well Met, first two months</dt><dd>450+</dd></div>
+          <div><dt>Clinical annotations made in Knowtator</dt><dd>100k+</dd></div>
+          <div><dt>Years shipping production code</dt><dd>10</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <section class="block" id="services">
+    <div class="wrap">
+      <div class="block-head">
+        <span class="label">Services</span>
+        <h2>What I can take off your plate</h2>
+        <p>Scoped as a fixed deliverable or folded into your team's sprint.</p>
+      </div>
+      <div class="block-body">
+        <ul class="services">
+          <li>
+            <h3>Backend APIs &amp; data pipelines</h3>
+            <div>
+              <p>REST and GraphQL services, high-volume document and data processing, and rules engines that encode how your business actually decides things.</p>
+              <div class="tags"><span>Python</span><span>Clojure</span><span>GraphQL</span><span>PostgreSQL</span></div>
+            </div>
+          </li>
+          <li>
+            <h3>Database migrations</h3>
+            <div>
+              <p>Moving a live production database to a new engine or schema with no downtime. I've done it for Datomic to PostgreSQL as the database neared Datomic's size limits.</p>
+              <div class="tags"><span>PostgreSQL</span><span>Datomic</span><span>DynamoDB</span></div>
+            </div>
+          </li>
+          <li>
+            <h3>AWS infrastructure</h3>
+            <div>
+              <p>Event-driven systems on Lambda, ECS, SQS, SNS, and RDS, managed as code in Terraform so the next engineer can read and change it.</p>
+              <div class="tags"><span>Terraform</span><span>Lambda</span><span>ECS</span><span>SQS</span><span>Docker</span></div>
+            </div>
+          </li>
+          <li>
+            <h3>LLM &amp; ML automation</h3>
+            <div>
+              <p>Document processing and verification that replaces manual review work, with the guardrails and human review steps that make it safe to rely on.</p>
+              <div class="tags"><span>LLMs</span><span>PyTorch</span><span>NLP</span><span>Claude Code</span></div>
+            </div>
+          </li>
+          <li>
+            <h3>Clojure &amp; ClojureScript</h3>
+            <div>
+              <p>New builds, web and mobile apps on re-frame and React Native, and modernizing older Clojure systems that the original team has moved on from.</p>
+              <div class="tags"><span>Clojure</span><span>re-frame</span><span>React Native</span><span>Expo</span></div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="work">
+    <div class="wrap">
+      <div class="block-head">
+        <span class="label">Selected work</span>
+        <h2>Where I've done it before</h2>
+        <p>Full history on <a href="https://www.linkedin.com/in/harrison-p-l/">LinkedIn</a>.</p>
+      </div>
+      <div class="block-body ledger">
+        <article class="entry">
+          <div class="entry-meta">
+            <h3><a href="https://getwellmet.app/">Well Met</a></h3>
+            <span class="when">Aug 2026 – now</span>
+          </div>
+          <p class="role">Founder &amp; engineer · web, iOS, and Android dating app built around mutual-consent post-date reviews</p>
+          <ul>
+            <li>Clojure backend on PostgreSQL with real-time WebSocket updates, and one shared ClojureScript core behind the web app, admin tool, and React Native mobile app.</li>
+            <li>ID verification through Persona, geohash-only location storage, and audit-logged photo and video moderation.</li>
+            <li>Built with AI coding agents under written architecture guardrails and review: 450+ pull requests merged in two months, covered by Playwright, unit, and CI test suites.</li>
+          </ul>
+        </article>
+        <article class="entry">
+          <div class="entry-meta">
+            <h3>Peruse Technology</h3>
+            <span class="when">Sep 2022 – Mar 2026</span>
+          </div>
+          <p class="role">Senior software engineer · B2B logistics SaaS, acquired</p>
+          <ul>
+            <li>Joined early and built core systems through to acquisition, growing to 70+ customers on a four-to-six person engineering team.</li>
+            <li>Designed the core load processing pipeline and rules engine in Clojure and Python, handling 1M+ documents a month.</li>
+            <li>Trained and deployed LLM-based models for document processing and freight broker verification, replacing work that took customers whole audit teams.</li>
+            <li>Led the zero-downtime move from Datomic to PostgreSQL, and was the technical contact on client calls for several accounts.</li>
+          </ul>
+        </article>
+        <article class="entry">
+          <div class="entry-meta">
+            <h3><a href="https://github.com/UCDenver-ccp/Knowtator-2.0">Knowtator</a></h3>
+            <span class="when">2016 – 2022</span>
+          </div>
+          <p class="role">Research software engineer, University of Colorado Anschutz · clinical text annotation</p>
+          <ul>
+            <li>Rewrote a Java Swing annotation tool as a ClojureScript web app, used by clinicians and researchers for 100k+ annotations against ICD and SNOMED.</li>
+            <li>Led software across 4+ research teams: 5 open-source packages, 4 datasets, and 6 publications.</li>
+          </ul>
+        </article>
+        <article class="entry">
+          <div class="entry-meta">
+            <h3><a href="https://github.com/tuh8888/datascript-shortest-path">datascript-shortest-path</a></h3>
+            <span class="when">Open source</span>
+          </div>
+          <p class="role">Clojure library</p>
+          <ul>
+            <li>Shortest-path search over DataScript graphs, including a Fibonacci heap built on immutable data structures.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="engagements">
+    <div class="wrap">
+      <div class="block-head">
+        <span class="label">Engagements</span>
+        <h2>How we can work together</h2>
+        <p>Contract and 1099. Remote anywhere in the US, or on-site in Colorado.</p>
+      </div>
+      <div class="block-body">
+        <div class="terms">
+          <div class="term">
+            <h3>Fixed-scope project</h3>
+            <p>A defined deliverable, such as a migration, a new service, or an infrastructure overhaul, with a written plan and a price agreed up front.</p>
+            <span class="rate">Quoted per project</span>
+          </div>
+          <div class="term">
+            <h3>Hourly or weekly</h3>
+            <p>I join your team's sprints, pick up tickets, and ship alongside your engineers, with weekly updates on what moved.</p>
+            <span class="rate">Rate on request</span>
+          </div>
+          <div class="term">
+            <h3>Monthly retainer</h3>
+            <p>A set block of hours each month for architecture reviews, on-call backup, and keeping a system healthy after launch.</p>
+            <span class="rate">Rate on request</span>
+          </div>
+        </div>
+        <p class="note">Not sure which fits? Send a short note about the system and the problem. I'll reply with how I'd approach it and a rough estimate, free of charge.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="background">
+    <div class="wrap">
+      <div class="block-head">
+        <span class="label">Background</span>
+        <h2>Training &amp; talks</h2>
+      </div>
+      <div class="block-body">
+        <dl class="facts">
+          <div><dt>M.S.</dt><dd>Computational Bioscience, University of Colorado Anschutz Medical Campus, 2022</dd></div>
+          <div><dt>B.S.</dt><dd>Applied Mathematics, minors in Computer Science and Biochemistry, University of Colorado Boulder, 2016</dd></div>
+          <div><dt>Talk</dt><dd>"AI in the Transportation Sector: Challenges and Successes," invited talk at the IDEAL institute, Chicago, 2024</dd></div>
+          <div><dt>Open source</dt><dd>Author of datascript-shortest-path; contributor to day8/re-frame-undo</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <span class="label" style="color: inherit; opacity: .7">Contact</span>
+      <h2>Tell me about the system you need built or fixed.</h2>
+      <p>Email is the fastest way to reach me. I usually reply within one business day.</p>
+      <div class="contact-row">
+        <a class="email" href="mailto:pielkekid@gmail.com?subject=Project%20inquiry" id="email">pielkekid@gmail.com</a>
+        <button class="copy" type="button" id="copy-email">Copy email</button>
+      </div>
+      <div class="links">
+        <a href="https://www.linkedin.com/in/harrison-p-l/">LinkedIn</a>
+        <a href="https://github.com/harrison-p-l">GitHub</a>
+        <a href="https://getwellmet.app/">Well Met</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Harrison Pielke-Lombardo · Denver, Colorado</span>
+    <span>© 2026</span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var btn = document.getElementById('copy-email');
+    var email = document.getElementById('email');
+    btn.addEventListener('click', function () {
+      var text = email.textContent.trim();
+      var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy email'; }, 2000); };
+      var fallback = function () {
+        var range = document.createRange(); range.selectNodeContents(email);
+        var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+        btn.textContent = 'Selected, press Ctrl+C';
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, fallback);
+      } else { fallback(); }
+    });
+  })();
+</script>
+</body>
+</html>
